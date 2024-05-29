@@ -1,25 +1,27 @@
 package ex3;
-import java.util.List;
 
-public class ZoneCarnivore {
 
-	private List<String> types;
-	private List<String> noms;
-	private List<String> comportements;
+import ex3.enums.Alimentation;
+import ex3.enums.TypeAnimal;
+
+public class ZoneCarnivore extends Zone{
 	
-	public void addAnimal(String typeAnimal, String nomAnimal, String comportement) {
-		types.add(typeAnimal);
-		noms.add(nomAnimal);
-		comportements.add(comportement);
-	}
+	/** AVERAGE_WEIGHT_CARNIVOR_ZONE */
+	public static final double AVERAGE_WEIGHT_CARNIVOR_ZONE = 10.00;
 	
-	public void afficherListeAnimaux(){
-		for (String nom: noms){
-			System.out.println(nom);
-		}
+	/** Constructor
+	 * 
+	 */
+	public ZoneCarnivore() {
+		super(AVERAGE_WEIGHT_CARNIVOR_ZONE);
+		
 	}
+
+	@Override
+	public boolean animalValidation(Animal animal) {
+		
+		return animal.getAlimentation().equals(Alimentation.CARNIVORE) && animal.getType().equals(TypeAnimal.MAMMIFERE);
+	}
+
 	
-	public double calculerKgsNourritureParJour(){
-		return noms.size() * 10;
-	}
 }
