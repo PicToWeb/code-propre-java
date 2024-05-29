@@ -1,36 +1,56 @@
 package ex5;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+
 
 public class Inventaire {
 
-	private List<Caisse> caisses;
+	private List<Caisse> caisses = new ArrayList<>();
 
 	public Inventaire() {
-		caisses = new ArrayList<>();
-		caisses.add(new Caisse("Petits objets"));
-		caisses.add(new Caisse("Moyens objets"));
-		caisses.add(new Caisse("Grands objets"));
+
+		Collections.addAll(caisses, new PetiteCaisse(), new MoyenneCaisse(), new GrandeCaisse());
 	}
 
 	public void addItem(Item item) {
 
-		//TODO Faites évoluer ce code (idée: c'est le caisse qui doit "savoir" si elle peut accepter un objet ou non)
-		if (item.getPoids() < 5) {
-			caisses.get(0).getItems().add(item);
+		for (Caisse caisse : caisses) {
+			if(caisse.caisseValidation(item)) {
+				caisse.getItems().add(item);
+			}
 		}
-		if (item.getPoids() >= 5 && item.getPoids() <= 20) {
-			caisses.get(1).getItems().add(item);
+	}
+	
+
+	public void afficherListeItems() {
+		for (Caisse caisse : caisses) {
+			caisse.afficherListeItems();
 		}
-		if (item.getPoids() >= 20) {
-			caisses.get(2).getItems().add(item);
-		}
+
 	}
 
 	public int taille() {
-		
-		//TODO faites évoluer ce code.
-		return caisses.get(0).getItems().size() + caisses.get(1).getItems().size() + caisses.get(2).getItems().size();
+		int somme = 0;
+		for(Caisse caisse : caisses) {
+			somme += caisse.taille();
+		}
+		return somme;
 	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Inventaire : ").append(taille()).append(" objets");
+		for (Caisse caisse : caisses) {
+			builder.append("\n\t").append(caisse);
+		}
+		return builder.toString();
+		
+	}
+
+	
+	
+	
 }

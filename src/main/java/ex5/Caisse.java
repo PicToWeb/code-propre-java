@@ -3,7 +3,7 @@ package ex5;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Caisse {
+public abstract class Caisse {
 
 	private String nom;
 	private List<Item> items;
@@ -12,9 +12,37 @@ public class Caisse {
 	 * @param nom
 	 */
 	public Caisse(String nom) {
-		super();
 		this.nom = nom;
 		this.items = new ArrayList<>();
+	}
+	
+	/**
+	 * @param item
+	 * @return
+	 */
+	public abstract boolean caisseValidation (Item item);
+	
+	public void afficherListeItems() {
+		for (Item item : items) {
+			System.out.println("Caisse : " + getNom() + ", nom : " + item.getNom() + ", poids : " + item.getPoids());
+		}
+
+	}
+	
+	
+	
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("- ").append(taille()).append(" ").append(getNom());
+		for (Item item : items) {
+			builder.append("\n\t\t").append(item.getNom());
+		}
+		return builder.toString();
+	}
+
+	public int taille() {
+		return items.size();
 	}
 
 	/** Getter pour l'attribut nom

@@ -3,30 +3,52 @@ package ex5;
 public class Item {
 
 	private String nom;
-	private int poids;
-	
-	/** Getter pour l'attribut nom
+	private double poids;
+
+	/**
+	 * Constructor
+	 * 
+	 * @param nom
+	 * @param poids
+	 */
+	public Item(String nom, double poids) {
+		this.nom = nom;
+		this.poids = poids;
+	}
+
+	/**
+	 * Getter pour l'attribut nom
+	 * 
 	 * @return the nom
 	 */
 	public String getNom() {
 		return nom;
 	}
-	/** Setter pour l'attribut nom
+
+	/**
+	 * Setter pour l'attribut nom
+	 * 
 	 * @param nom the nom to set
 	 */
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
-	/** Getter pour l'attribut poids
+
+	/**
+	 * Getter pour l'attribut poids
+	 * 
 	 * @return the poids
 	 */
-	public int getPoids() {
+	public double getPoids() {
 		return poids;
 	}
-	/** Setter pour l'attribut poids
+
+	/**
+	 * Setter pour l'attribut poids
+	 * 
 	 * @param poids the poids to set
 	 */
-	public void setPoids(int poids) {
+	public void setPoids(double poids) {
 		this.poids = poids;
 	}
 }
